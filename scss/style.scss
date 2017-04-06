@@ -5,24 +5,26 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #cccccc;
+    background-color: #FFFF9D;
 }
 
 #board {
   margin: 50px auto 0;
   min-height: 100px;
   min-width: 100px;
+  box-shadow: 0 0 0 3px black;
 
   div {
     width: 10px;
     height: 10px;
-    // border: 1px solid #cccccc;
+    border: 1px solid rgba(0, 0, 0, 0.1);
     background-color: #ffffff;
     float: left;
+    box-sizing: border-box;
 
   }
   .live {
-    background-color: black;
+    background-color: #FF6138;
   }
 }
 
@@ -31,7 +33,11 @@ body {
 
 
 
-#game-menu {
-    margin: 50px auto;
-    width: auto;
+#game-set {
+    margin: 20px auto;
+    width: 150px;
+
+    button {
+      font-size: 18px;
+    }
 }
