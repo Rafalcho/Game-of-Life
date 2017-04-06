@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     this.createBoard = function() {
 
       this.board.style.width = this.width * 10 + 'px';
-      this.board.style.height = this.height + 10 + 'px';
+      this.board.style.height = this.height * 10 + 'px';
 
       var numberOfFields = this.height * this.width;
 
@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
       this.cells.forEach(function(e) {
         e.addEventListener('click', function() {
           this.classList.toggle('live');
+
         });
       });
 
@@ -73,10 +74,18 @@ document.addEventListener('DOMContentLoaded', function() {
         totalLiveNeighbours++;
       }
 
-      if (totalLiveNeighbours === 2 || totalLiveNeighbours === 3) {
-        return 1;
+      if (this.index(x, y).classList.contains('live')) {
+        if (totalLiveNeighbours === 2 || totalLiveNeighbours === 3) {
+          return 1;
+        } else {
+          return 0;
+        }
       } else {
-        return 0;
+        if (totalLiveNeighbours === 3) {
+          return 1;
+        } else {
+          return 0;
+        }
       }
 
     };
@@ -91,7 +100,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
         }
       }
-      console.log(this.nextGeneration);
+
+    };
+
+    this.printNextGeneration = function() {
+      this.computeNextGeneration();
+
+      for (var i = 0; i < this.nextGeneration.length; i++) {
+        if (this.nextGeneration[i] === 1) {
+          this.cells[i].classList.add('live');
+        } else if (this.nextGeneration[i] === 0) {
+          this.cells[i].classList.remove('live');
+        }
+      }
+      this.nextGeneration = [];
     };
 
     this.firstGlider = function() {
@@ -104,9 +126,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
   }
 
-  var game = new GameOfLife(10,10);
+  var game = new GameOfLife(50,50);
   game.createBoard();
-  game.firstGlider();
-  game.computeNextGeneration();
+  // game.firstGlider();
+  // game.computeNextGeneration();
+
+  var playButton = document.querySelector('#play');
+  playButton.addEventListener('click', function() {
+    game.printNextGeneration();
+  });
 
 });
