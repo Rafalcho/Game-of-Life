@@ -13,11 +13,13 @@ body {
   min-height: 100px;
   min-width: 100px;
   box-shadow: 0 0 0 3px black;
+  cursor: pointer;
 
   div {
     width: 10px;
     height: 10px;
     border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
     background-color: #ffffff;
     float: left;
     box-sizing: border-box;

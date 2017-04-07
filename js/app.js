@@ -25,12 +25,27 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       this.cells = Array.from(document.querySelectorAll('#board div'));
+      self = this;
+
+      toggleLiveClass = function() {
+        this.classList.toggle('live');
+      };
 
       this.cells.forEach(function(e) {
-        e.addEventListener('click', function() {
-          this.classList.toggle('live');
-        });
+        e.addEventListener('click', toggleLiveClass);
       });
+
+      document.body.onmousedown = function() { //changing cells while mouse down
+        self.cells.forEach(function(e) {
+            e.addEventListener('mouseover', toggleLiveClass);
+          });
+      };
+
+      document.body.onmouseup = function() {
+        self.cells.forEach(function(e) {
+            e.removeEventListener('mouseover', toggleLiveClass);
+          });
+      };
     };
 
     this.setCellState = function(x, y, state) {
@@ -132,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
   playButton.addEventListener('click', function() {
     var generationInterval = setInterval(function() {
       game.printNextGeneration();
-    }, 100);
+    }, 150);
 
     var pauseButton = document.querySelector('#pause');
     pauseButton.addEventListener('click', function() {
