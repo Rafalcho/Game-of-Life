@@ -129,6 +129,12 @@ document.addEventListener('DOMContentLoaded', function() {
       this.nextGeneration = [];
     };
 
+    this.clearBoard = function() {
+      this.cells.forEach(function(e) {
+        e.classList.remove('live');
+      });
+    };
+
     this.firstGlider = function() {
       this.setCellState(4, 1, 'live');
       this.setCellState(5, 2, 'live');
@@ -152,6 +158,12 @@ document.addEventListener('DOMContentLoaded', function() {
     var pauseButton = document.querySelector('#pause');
     pauseButton.addEventListener('click', function() {
       clearInterval(generationInterval);
+    });
+
+    var clearButton = document.querySelector('#clear');
+    clearButton.addEventListener('click', function() {
+      clearInterval(generationInterval);
+      game.clearBoard();
     });
   });
 
