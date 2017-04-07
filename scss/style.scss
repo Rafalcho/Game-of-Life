@@ -6,6 +6,55 @@ body {
     margin: 0;
     padding: 0;
     background-color: #FFFF9D;
+    font-family: Arial, sans-serif;
+}
+
+.welcome {
+  z-index: 1;
+  background-color: rgb(255,255,157);
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+
+  .info {
+    width: 700px;
+    margin: 100px auto 0 auto;
+    text-align: center;
+
+    ol {
+      text-align: left;
+    }
+    form {
+      width: 110px;
+      margin: 0 auto;
+    }
+  input {
+    width: 50px;
+    display: inline-block;
+     margin-bottom: 5px;
+
+  }
+  label {
+    display: inline-block;
+    float: left;
+    text-align: right;
+    width: 50px;
+    margin-right: 10px;
+  }
+  #go {
+    font-size: 22px;
+    padding: 5px;
+    width: 60px;
+    margin-top: 15px;
+  }
+  }
+}
+
+.hide {
+  display: none;
 }
 
 #board {
@@ -31,13 +80,9 @@ body {
 }
 
 
-
-
-
-
 #game-set {
     margin: 20px auto;
-    width: 300px;
+    width: 180px;
 
     button {
       font-size: 18px;

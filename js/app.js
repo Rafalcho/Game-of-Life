@@ -27,8 +27,9 @@ document.addEventListener('DOMContentLoaded', function() {
       this.cells = Array.from(document.querySelectorAll('#board div'));
       self = this;
 
-      toggleLiveClass = function() {
+      toggleLiveClass = function(event) {
         this.classList.toggle('live');
+
       };
 
       this.cells.forEach(function(e) {
@@ -145,26 +146,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
   }
 
-  var game = new GameOfLife(100,50);
-  game.createBoard();
-  game.firstGlider();
+  var goButton = document.querySelector('#go');
+  goButton.addEventListener('click', function(event) {
 
-  var playButton = document.querySelector('#play');
-  playButton.addEventListener('click', function() {
-    var generationInterval = setInterval(function() {
-      game.printNextGeneration();
-    }, 150);
+    event.preventDefault();
+    document.querySelector('.welcome').classList.add('hide');
+    var userWidth = document.querySelector('#width').value;
+    var userHeight = document.querySelector('#height').value;
+    var game = new GameOfLife(userWidth, userHeight);
+    game.createBoard();
+    game.firstGlider();
 
-    var pauseButton = document.querySelector('#pause');
-    pauseButton.addEventListener('click', function() {
-      clearInterval(generationInterval);
+    var playButton = document.querySelector('#play');
+    playButton.addEventListener('click', function() {
+      var generationInterval = setInterval(function() {
+        game.printNextGeneration();
+      }, 150);
+
+      var pauseButton = document.querySelector('#pause');
+      pauseButton.addEventListener('click', function() {
+        clearInterval(generationInterval);
+      });
+
+      var clearButton = document.querySelector('#clear');
+      clearButton.addEventListener('click', function() {
+        clearInterval(generationInterval);
+        game.clearBoard();
+      });
     });
 
-    var clearButton = document.querySelector('#clear');
-    clearButton.addEventListener('click', function() {
-      clearInterval(generationInterval);
-      game.clearBoard();
-    });
   });
 
 });

@@ -9,6 +9,31 @@
 </head>
 
 <body>
+
+  <section class="welcome">
+    <div class="info">
+      <h1>Welcome to the Game of Life</h1>
+      <p>These are the rules:</p>
+      <ol>
+        <li>Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.</li>
+        <li>Any live cell with two or three live neighbours lives on to the next generation.</li>
+        <li>Any live cell with more than three live neighbours dies, as if by overpopulation.</li>
+        <li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
+      </ol>
+      <p>Click or draw on the board to kill or revive the cells.</p>
+
+      <form>
+        <label for="width">Width: </label>
+        <input id="width" type="text" name="width" value="100"> <br>
+        <label for="height">Height: </label>
+        <input id="height" type="text" name="height" value="50">
+        <input type="submit" id="go" value="Go!">
+      </form>
+
+    </div>
+  </section>
+
+
     <div class="flex-container">
         <section id="board">
         </section>
